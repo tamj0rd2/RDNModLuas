@@ -258,10 +258,6 @@ infocenterbuildqueue = function( id, enabled )
 end
 
 --
-infocentercashpile = function( id )
-end
-
---
 infocenterguy = function( id )
 end
 
@@ -282,7 +278,6 @@ infocenterenemy = function()
 		local type = EntityType( id ) 
 
 		if	type == HQ_EC or
-			type == CashPile or
 			type == Guy_EC
 		then
 
@@ -341,10 +336,6 @@ infocentersingle = function( id )
 	elseif EntityType( id ) == HQ_EC then
 
 		infocenterhq( id )
-
-	elseif EntityType( id ) == Rex_EC then
-
-		infocentercashpile( id )
 
 	end
 
@@ -568,21 +559,6 @@ guyselection = function()
 
 	--
 	cleartaskbar()
-
-end
-
---
-
-cashpileselection = function()
-
-	local id = SelectionId( 0 )
-
-	--
-	cleartaskbar()
-
-	-- command area
-		-- background
-	ShowBitmapLabel( "command_bigicon_back" )
 
 end
 

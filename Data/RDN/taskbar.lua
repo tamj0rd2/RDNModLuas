@@ -277,7 +277,7 @@ infocenterenemy = function()
 		
 		local type = EntityType( id ) 
 
-		if	type == HQ_EC or
+		if	type == Lab_EC or
 			type == Guy_EC
 		then
 
@@ -333,7 +333,7 @@ infocentersingle = function( id )
 
 		infocenterguy( id )
 
-	elseif EntityType( id ) == HQ_EC then
+	elseif EntityType( id ) == Lab_EC then
 
 		infocenterhq( id )
 
@@ -505,7 +505,7 @@ mcqualifier_killconfirm = function( id )
 	local type = EntityType( id )
 
 	-- HQ cannot self destruct
-	if type == HQ_EC then
+	if type == Lab_EC then
 		return 0
 	end
 
@@ -624,7 +624,7 @@ friendlyselection = function()
 			-- guy
 			guyId = id
 
-		elseif type == HQ_EC then
+		elseif type == Lab_EC then
 
 			-- building
 			buildingId = id

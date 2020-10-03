@@ -31,15 +31,15 @@
 	HK_Guy_Attack			= "keygroups.guycommands.keys.attack"
 	HK_Guy_Kill				= "keygroups.guycommands.keys.kill"
 
-	-- HQ
-	HK_HQ_SpawnRock		= "keygroups.hqcommands.keys.spawnrock"
-	HK_HQ_SpawnPaper		= "keygroups.hqcommands.keys.spawnpaper"
-	HK_HQ_SpawnScissor		= "keygroups.hqcommands.keys.spawnscissor"
+	-- Lab
+	HK_Lab_SpawnRock		= "keygroups.hqcommands.keys.spawnrock"
+	HK_Lab_SpawnPaper		= "keygroups.hqcommands.keys.spawnpaper"
+	HK_Lab_SpawnScissor		= "keygroups.hqcommands.keys.spawnscissor"
 
 	-- selection
 	HK_Select_UnitsOnScreen	= "keygroups.select.keys.unitsonscreen"
 	HK_Select_UnitsInWorld	= "keygroups.select.keys.unitsinworld"
-	HK_Select_HQ			= "keygroups.select.keys.hq"
+	HK_Select_Lab			= "keygroups.select.keys.hq"
 
 	-- guy buttons
 	guy_buttons =
@@ -66,9 +66,9 @@
 
 	hq_commands = 
 	{
-		{ 40930,	HK_HQ_SpawnRock,		42370,	"ui/ingame/spawn_rock.tga" },
-		{ 40931,	HK_HQ_SpawnPaper,		42336,	"ui/ingame/spawn_paper.tga" },
-		{ 40932,	HK_HQ_SpawnScissor,		42337,	"ui/ingame/spawn_scissor.tga" },
+		{ 40930,	HK_Lab_SpawnRock,		42370,	"ui/ingame/spawn_rock.tga" },
+		{ 40931,	HK_Lab_SpawnPaper,		42336,	"ui/ingame/spawn_paper.tga" },
+		{ 40932,	HK_Lab_SpawnScissor,		42337,	"ui/ingame/spawn_scissor.tga" },
 	}
 
 	guy_modalmodes = 
@@ -114,7 +114,7 @@ cleartaskbar = function()
 		-- quick keyboard selection
 		BindHotkey       ( HK_Select_UnitsOnScreen, "selectallunitsonscreen", 0 )
 		BindHotkey       ( HK_Select_UnitsInWorld, "selectallunitsinworld", 0 )
-		BindHotkey       ( HK_Select_HQ, "selecthq", 0 )
+		BindHotkey       ( HK_Select_Lab, "selecthq", 0 )
 
 		-- player resources
 		BindLabelToPlayerCash	( "resource_cash_label", "resourceindicatorstooltip", 1, LocalPlayer() )
@@ -504,7 +504,7 @@ mcqualifier_killconfirm = function( id )
 
 	local type = EntityType( id )
 
-	-- HQ cannot self destruct
+	-- Lab cannot self destruct
 	if type == Lab_EC then
 		return 0
 	end
@@ -571,9 +571,9 @@ hqselection = function()
 	cleartaskbar()
 
 	-- spawn guys
-	BindButtonToUnitEBP( "build_rock", HK_HQ_SpawnRock, "dobuildunit", "commandstooltip", id, RockEBP() )
-	BindButtonToUnitEBP( "build_paper", HK_HQ_SpawnPaper, "dobuildunit", "commandstooltip", id, PaperEBP() )
-	BindButtonToUnitEBP( "build_scissor", HK_HQ_SpawnScissor, "dobuildunit", "commandstooltip", id, ScissorEBP() )
+	BindButtonToUnitEBP( "build_rock", HK_Lab_SpawnRock, "dobuildunit", "commandstooltip", id, RockEBP() )
+	BindButtonToUnitEBP( "build_paper", HK_Lab_SpawnPaper, "dobuildunit", "commandstooltip", id, PaperEBP() )
+	BindButtonToUnitEBP( "build_scissor", HK_Lab_SpawnScissor, "dobuildunit", "commandstooltip", id, ScissorEBP() )
 
 	-- command area
 		-- background
@@ -1074,7 +1074,7 @@ on_initial = function()
 	CreateMinimap( "minimap" )
 
 	-- focus on player's lab
-	FocusOnEntity( LocalPlayerHQId(), 0, 1 )
+	FocusOnEntity( LocalPlayerLabId(), 0, 1 )
 
 	-- Initialize UI Prefs
 	LoadUIOptions()
@@ -1159,5 +1159,5 @@ selectallunitsinworld = function()
 end
 
 selecthq = function()
-	SelectHQ()
+	SelectLab()
 end
